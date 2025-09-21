@@ -3,28 +3,34 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pequeños rayitos de sol</title>
     <style>
         body {
             margin: 0;
             font-family: 'Segoe UI', sans-serif;
             background: #fffbea;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             padding: 20px;
         }
 
-        /* Contenedor del carrusel */
+        /* Contenedor principal */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Carrusel */
         .carousel {
             position: relative;
-            width: 100%;
-            max-width: 900px;
-            height: 400px;
+            flex: 1 1 400px;
+            max-width: 600px;
+            height: 350px;
             overflow: hidden;
             border-radius: 20px;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-            margin-bottom: 30px;
         }
 
         .carousel img {
@@ -40,24 +46,28 @@
             opacity: 1;
         }
 
-        /* Texto */
+        /* Contenido */
         .content {
-            max-width: 900px;
+            flex: 1 1 350px;
+            max-width: 600px;
             text-align: center;
             background: #fff9e6;
-            padding: 20px 30px;
+            padding: 20px 25px;
             border-radius: 15px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .content h1 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: #e6b800;
             margin-bottom: 10px;
         }
 
         .content p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #444;
             margin-bottom: 20px;
         }
@@ -66,37 +76,69 @@
         audio {
             margin-top: 15px;
             width: 100%;
-            max-width: 400px;
+            max-width: 350px;
+            align-self: center;
+        }
+
+        /* --- Responsividad --- */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .carousel {
+                width: 100%;
+                max-width: 100%;
+                height: 250px;
+            }
+
+            .content {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .content h1 {
+                font-size: 1.5rem;
+            }
+
+            .content p {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Carrusel de imágenes -->
-    <div class="carousel">
-        <img src="images/Imagen_1.jpg" alt="Girasoles" class="active">
-        <img src="images/Imagen_2.jpg" alt="Mariposa">
-        <img src="images/Imagen_3.jpg" alt="Atardecer con flores">
-        <img src="images/Imagen_4.png" alt="Escritorio con flores">
-    </div>
+    <div class="container">
+        <!-- Carrusel de imágenes -->
+        <div class="carousel">
+            <img src="/images/Imagen_1.jpg" alt="Girasoles" class="active">
+            <img src="/images/Imagen_2.jpg" alt="Mariposa">
+            <img src="/images/Imagen_3.jpg" alt="Atardecer con flores">
+            <img src="/images/Imagen_4.png" alt="Escritorio con flores">
+        </div>
 
-    <!-- Texto y audio -->
-    <div class="content">
-        <h1>🌻 Día de las Flores Amarillas 🌻</h1>
-        <p style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Un girasol sobre la mesa y
-            una sonrisa suya ya hacen brillar el día ✨🌸</p>
+        <!-- Texto y audio -->
+        <div class="content">
+            <h1>🌻 Día de las Flores Amarillas 🌻</h1>
+            <p style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                Un girasol sobre la mesa y una sonrisa suya ya hacen brillar el día ✨🌸
+            </p>
 
-        <audio controls>
-            <source src="audio/Coldplay - Yellow.mp3" type="audio/mpeg">
-        </audio>
-        <p style="font-size: 1rem; color: #666; margin-top: 10px;">
-            Un pequeño detalle &lt;/&gt;, Carlos
-        </p>
+            <audio controls>
+                <source src="/audio/Coldplay - Yellow.mp3" type="audio/mpeg">
+            </audio>
+
+            <p style="font-size: 1rem; color: #666; margin-top: 10px;">
+                Un pequeño detalle &lt;/&gt;, Carlos
+            </p>
+        </div>
     </div>
 
     <script>
-        // Carrusel con JavaScript (cada 8 segundos)
+        // Carrusel con JavaScript
         const images = document.querySelectorAll(".carousel img");
         let index = 0;
 
@@ -106,10 +148,9 @@
             images[index].classList.add("active");
         }
 
-        setInterval(showNextImage, 5000); // cambia cada 8s
+        setInterval(showNextImage, 5000);
     </script>
 
 </body>
-
 
 </html>
